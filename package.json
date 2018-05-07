@@ -1,0 +1,44 @@
+{
+  "name": "vue2leafleteditablepolyline",
+  "description": "A vue project",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "dev": "webpack-dev-server --progress --inline --hot --config config/webpack.config.dev.js",
+    "build": "rimraf build && webpack  --config config/webpack.config.pro.js --progress --profile --bail"
+  },
+  "dependencies": {
+    "vue": "^2.1.8",
+    "vue-router": "^2.3.0"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.6.0",
+    "babel-core": "^6.21.0",
+    "babel-eslint": "^7.1.1",
+    "babel-loader": "^6.4.0",
+    "babel-preset-es2015": "^6.13.2",
+    "css-loader": "^0.27.0",
+    "expose-loader": "^0.7.3",
+    "eslint": "^3.12.2",
+    "eslint-config-enough": "^0.2.2",
+    "eslint-loader": "^1.6.3",
+    "file-loader": "^0.10.1",
+    "html-loader": "^0.4.5",
+    "html-webpack-plugin": "^2.24.1",
+    "node-sass": "^3.13.1",
+    "postcss-loader": "^1.3.3",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^4.1.1",
+    "style-loader": "^0.13.2",
+    "url-loader": "^0.5.8",
+    "vue-loader": "^11.1.4",
+    "vue-template-compiler": "^2.1.8",
+    "webpack": "^2.3.2",
+    "webpack-dev-server": "^2.2.2",
+    "webpack-merge": "^0.16.0",
+    "extract-text-webpack-plugin": "^2.1.0"
+  }
+}
