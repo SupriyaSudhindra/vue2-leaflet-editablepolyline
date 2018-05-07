@@ -1,10 +1,13 @@
+// import Vue from 'vue'
 
-import WelcomePage from 'pages/welcome/index.vue';
+import example from 'pages/example/example.vue';
+import Vue2EditablePolyline from 'pages/vue2editablepolyline/vue2editablepolyline.vue';
 
 const routes = [
     {
-        path: '/',
-        component: WelcomePage
+        path: '/example',
+        redirect: '/example',
+        component: example
     }
 ];
 
