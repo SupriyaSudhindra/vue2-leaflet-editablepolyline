@@ -1,15 +1,31 @@
 {
-  "name": "vue2leafleteditablepolyline",
-  "description": "A vue project",
-  "author": "",
-  "private": true,
+  "name": "vue2-leaflet-editable-polyline",
+  "version": "1.0.0",
+  "description": "editablepolyline plugin extension for vue2-leaflet package",
+  "author": "Supriya S<dhatu.priya@rediffmail.com>",
+  "main": "dist/vue2editablepolyline.js",
   "scripts": {
-    "dev": "webpack-dev-server --progress --inline --hot --config config/webpack.config.dev.js",
-    "build": "rimraf build && webpack  --config config/webpack.config.pro.js --progress --profile --bail"
+    "dev": "webpack-dev-server --progress --no-inline --config config/webpack.config.dev.js",
+    "build": "rimraf build && webpack  --config config/webpack.config.pro.js --progress --profile --bail",
+    "example": "vue build example.vue"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SupriyaSudhindra/vue2-leaflet-editablepolyline.git"
+  },
+  "keywords": [
+    "vue2",
+    "leaflet",
+    "editablepolyline",
+    "polyline"
+  ],
+  "bugs": {
+    "url": "https://github.com/SupriyaSudhindra/vue2-leaflet-editablepolyline/issues"
+  },
+  "homepage": "https://github.com/SupriyaSudhindra",
   "dependencies": {
     "leaflet": "^1.3.1",
-    "leaflet-editable-polyline": "^1.0.3",
+    "leaflet-editable-polyline": "^1.0.7",
     "vue": "^2.1.8",
     "vue-router": "^2.3.0",
     "vue2-leaflet": "^1.0.2"

@@ -36,7 +36,7 @@ module.exports = webpackMerge(commonConfig, {
     new HtmlWebpackPlugin({
         template: resolve(srcPath, `index.html`),
         inject: true,
-        chunks: ['vendor', 'main'],
+        chunks: ['vendor', 'main', 'vue2editablepolyline'],
         filename: resolve(__dirname+'/../', buildCfg.outputPath, `index.html`)
     })
   ]

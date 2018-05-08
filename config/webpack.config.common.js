@@ -3,12 +3,14 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const srcPath = resolve(__dirname+'/../', 'src');
+const sPath = resolve(__dirname+'/../', 'src/pages/vue2editablepolyline');
 
 module.exports = {
 
   entry: {
     vendor: ['vue','vue-router'],
     main:resolve(srcPath, `index.js`),
+    vue2editablepolyline: resolve(sPath, 'vue2editablepolyline.vue')
   },
 
   resolve: {

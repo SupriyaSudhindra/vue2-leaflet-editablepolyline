@@ -35,7 +35,7 @@ module.exports = webpackMerge(commonConfig, {
   ],
   devServer: {
     port: 8080,
-    inline: true,
+    inline: false,
     stats: 'minimal',
     proxy:  {},
     historyApiFallback: true

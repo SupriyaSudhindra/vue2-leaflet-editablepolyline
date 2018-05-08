@@ -1,6 +1,6 @@
 
 exports.buildCfg = {
-  "outputPath": "output_f",
+  "outputPath": "dist",
   "staticPath": "/"
 };
 
