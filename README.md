@@ -35,7 +35,7 @@ In the script tag include
 ``` bash
 import L from 'leaflet'
 import * as Vue2Leaflet from 'vue2-leaflet'
-import Vue2LeafletEditablePolyline from 'vue2editablepolyline'
+import Vue2LeafletEditablePolyline from 'vue2-leaflet-editable-polyline'
 
 and define in components as
 components : {
