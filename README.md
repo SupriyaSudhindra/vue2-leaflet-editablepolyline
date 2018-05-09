@@ -29,7 +29,7 @@ BTW, Leaflet.Editable.Polyline is still a work in progress and some APIs may cha
 
 ## How to install
 ``` bash
-$ npm install vue2-leaflet-editablepolyline --save
+$ npm i vue2-leaflet-editable-polyline
 ```
 In the script tag include 
 ``` bash
