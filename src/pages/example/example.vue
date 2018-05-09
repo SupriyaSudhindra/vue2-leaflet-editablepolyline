@@ -9,7 +9,7 @@
       </v-map>
   </div>
   <br>
-  <div style="position:absolute;margin-top:60%;">
+  <div style="position:absolute;margin-top:35%;">
     <button @click="getPoints">Get points</button>
   <textarea cols="100" rows="10" v-model="points"></textarea>
   </div>
@@ -48,29 +48,17 @@ export default {
     }
   },
   mounted: function(){
-    
   },
   methods: {
     getPoints: function () {
-      // var map = this.$refs.poly.mapObject;
-      // map.getEditablePolylines().forEach(function(polyline) {
-      //   var points = polyline.getPoints();
-      //   points.forEach(function(point) {
-      //     var latLng = point.getLatLng();
-      //     pointsTextArea.innerHTML += 'originalPointNo=' + (point.context ? point.context.originalPointNo : null)
-      //       + ' originalPolylineNo=' + (point.context ? point.context.originalPolylineNo : null)
-      //       + ' (' + latLng.lat + ',' + latLng.lng + ')\n';
-      //       + '\n';
-      //   });
-      //     pointsTextArea.innerHTML += '----------------------------------------------------------------------------------------------------\n';
-      // });
       var points = this.$refs.poly.mapObject.getPoints();
+      console.log(points);
       for(var i = 0; i < points.length; i++) {
         var point = points[i];
         if(point.context) {
           // The original position of this point (new point may be added or 
           // removed before this one when editing):
-          this.points = 'latLng=' + point.getLatLng() + 'originalPointNo=' + point.context.originalPointNo + 'originalPolylineNo=' + point.context.originalPolylineNo;
+          this.points += 'latLng=' + point.getLatLng() + 'originalPointNo=' + point.context.originalPointNo + 'originalPolylineNo=' + point.context.originalPolylineNo;
         }
       }
     }
