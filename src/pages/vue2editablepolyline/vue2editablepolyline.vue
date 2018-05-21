@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <slot></slot>
+  <div style="display: none;">
+    <slot v-if="ready"></slot>
   </div>
 </template>
 <script>
@@ -25,37 +25,38 @@ const props = {
 
 export default {
   props: props,
+  data() {
+    return {
+      ready: false,
+    };
+  },
   mounted: function () {
     console.log("entered.");
-    this.mapObject = L.Polyline.PolylineEditor(this.latLng, this.options)
-    propsBinder(this, this.mapObject, props)
-    if (this.$parent._isMounted) {
-      this.deferredMountedTo(this.$parent.mapObject)
-    }
+    this.parentContainer = findRealParent(this.$parent);
+    this.mapObject = {pepe:1};
+    this.childrenLayers = [];
+    this.ready = true;
   },
   beforeDestroy() {
-    this.setVisible(false);
+    this.parentContainer.removeLayer(this);
   },
   methods: {
-    deferredMountedTo (parent) {
-      this.parent = parent
-      var that = this.mapObject
-      for (var i = 0; i < this.$children.length; i++) {
-        this.$children[i].deferredMountedTo(that)
-      }
-      if (this.visible) {
-        this.mapObject.addTo(parent)
+    addLayer(layer, alreadyAdded) {
+      if (!alreadyAdded) {
+        this.parentContainer.addLayer(layer);
+        this.childrenLayers.push(layer.mapObject);
+        if (this.$children.length == this.childrenLayers.length) {
+          this.mapObject = L.polylineDecorator(this.childrenLayers, this.options);
+          L.DomEvent.on(this.mapObject, this.$listeners);
+          propsBinder(this, this.mapObject, props);
+          this.parentContainer.addLayer(this);
+          this.childrenLayers = [];
+        }
       }
     },
-    setVisible (newVal, oldVal) {
-      if (newVal === oldVal) return
-      if (this.mapObject) {
-        if (newVal) {
-          this.mapObject.addTo(this.parent)
-        }
-        else {
-          this.parent.removeLayer(this.mapObject)
-        }
+    removeLayer(layer, alreadyRemoved) {
+      if (!alreadyRemoved) {
+        this.mapObject.removeLayer(layer.mapObject);
       }
     }
   }

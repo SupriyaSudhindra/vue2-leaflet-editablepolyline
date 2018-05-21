@@ -2,11 +2,26 @@
 <div>
 	<div class="welcome-container" >
 		welcome to vue leaflet map...
-    	<v-map :zoom="zoom" :center="initialLocation" style="position:absolute;width: 700px; height: 500px;">
-        <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
-        <v-editable-polyline ref="poly" :latLng="latlngs" :options="options">
+    <l-map ref="map" :padding="[200, 200]" :zoom="zoom" :center="initialLocation" style="position:absolute;width: 700px; height: 500px;">
+      <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
+      <l-layer-group >
+        <v-editable-polyline ref="poly" :latLng="latlngs" :options="options" >
+          <l-popup >
+            <strong>Location Name: </strong>{{latlngs}}
+            <br><strong>Date: </strong>
+            <br><button class="btn btn-warning btn-sm" style="color: white;margin:5% 0% 0% 35%;" >Add</button>
+          </l-popup>
         </v-editable-polyline>
-      </v-map>
+      </l-layer-group>
+    </l-map>
+    	<!-- <v-map :zoom="zoom" :center="initialLocation" style="position:absolute;width: 700px; height: 500px;">
+        <v-tilelayer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></v-tilelayer>
+        <v-editable-polyline ref="poly" :latLng="latlngs" :options="options" >
+          <v-popup >
+            
+          </v-popup>
+        </v-editable-polyline>
+      </v-map> -->
   </div>
   <br>
   <div style="position:absolute;margin-top:35%;">
@@ -20,13 +35,21 @@
 </style>
 <script >
 import L from 'leaflet'
-import * as Vue2Leaflet from 'vue2-leaflet'
+import { LMap, LTileLayer, LMarker, LPolyline, LLayerGroup, LTooltip, LPopup, LControlZoom, LControlAttribution, LControlScale, LControlLayers } from 'vue2-leaflet'
 import Vue2LeafletEditablePolyline from '../vue2editablepolyline/vue2editablepolyline.vue'
 export default {
   components: {
-    'v-map': Vue2Leaflet.LMap,
-    'v-tilelayer': Vue2Leaflet.LTileLayer,
-    'v-polyline': Vue2Leaflet.LPolyline,
+    LMap,
+    LTileLayer,
+    LMarker,
+    LPolyline,
+    LLayerGroup,
+    LTooltip,
+    LPopup,
+    LControlZoom,
+    LControlAttribution,
+    LControlScale,
+    LControlLayers,
     'v-editable-polyline': Vue2LeafletEditablePolyline
   },
   data: function(){
@@ -38,13 +61,21 @@ export default {
       x += Math.random();
       y += Math.random();
     }
-    let options = {maxMarkers: 100};
+    let options = {
+      maxMarkers: 100,
+      customPointListeners: {
+        'click': function (e) {
+          // me.addMarker()
+          console.log(e.target.getPopup());
+        }
+      }};
     return {
       options,
       latlngs,
       initialLocation: L.latLng(x-0.3, y-0.3),
       zoom: 10,
-      points: ''
+      points: '',
+      content: 'hi'
     }
   },
   mounted: function(){
