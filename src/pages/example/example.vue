@@ -6,11 +6,11 @@
       <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
       <l-layer-group >
         <v-editable-polyline ref="poly" :latLng="latlngs" :options="options" >
-          <l-popup >
+          <!-- <l-popup >
             <strong>Location Name: </strong>{{latlngs}}
             <br><strong>Date: </strong>
             <br><button class="btn btn-warning btn-sm" style="color: white;margin:5% 0% 0% 35%;" >Add</button>
-          </l-popup>
+          </l-popup> -->
         </v-editable-polyline>
       </l-layer-group>
     </l-map>
@@ -37,6 +37,9 @@
 import L from 'leaflet'
 import { LMap, LTileLayer, LMarker, LPolyline, LLayerGroup, LTooltip, LPopup, LControlZoom, LControlAttribution, LControlScale, LControlLayers } from 'vue2-leaflet'
 import Vue2LeafletEditablePolyline from '../vue2editablepolyline/vue2editablepolyline.vue'
+function getPoint() {
+  alert('clicked');
+}
 export default {
   components: {
     LMap,
@@ -63,10 +66,14 @@ export default {
     }
     let options = {
       maxMarkers: 100,
+      newPolylines: false,
       customPointListeners: {
         'click': function (e) {
           // me.addMarker()
-          console.log(e.target.getPopup());
+          var marker = e.target;
+          marker.bindPopup("<button onclick='getPoint()'>Add</button>");
+          marker.openPopup();
+          // console.log(e.target.getContent());
         }
       }};
     return {
@@ -78,7 +85,8 @@ export default {
       content: 'hi'
     }
   },
-  mounted: function(){
+  created: function() {
+    window.getPoint = this.getPoints.bind(this);
   },
   methods: {
     getPoints: function () {
